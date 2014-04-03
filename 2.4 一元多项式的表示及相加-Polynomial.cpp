@@ -102,6 +102,7 @@ int PolynLength(polynomial P)
 }
 
 // 完成多项式相加运算，即：Pa = Pa + Pb，并销毁一元多项式Pb
+// 算法2.22
 void AddPolyn(polynomial &Pa, polynomial &Pb)
 {
 	Link ha = GetHead(Pa), hb = GetHead(Pb);
