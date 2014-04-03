@@ -131,7 +131,7 @@ Status Pop(SqStack &S, SElemType &e)
 
 // 从栈底到栈顶依次对栈中每个元素调用函数 visit()。一旦visit()失败，则操作失败
 // PASS
-Status StackTraverse(SqStack S, Status(*visit)(SqStack &S, SElemType &))
+Status StackTraverse(SqStack S, Status(*visit)(SElemType &))
 {
 	SElemType e;
 	SElemType *buttom = S.base;
@@ -139,7 +139,7 @@ Status StackTraverse(SqStack S, Status(*visit)(SqStack &S, SElemType &))
 	while (buttom != S.top)
 	{
 		e = *buttom;
-		visit(S, e);
+		visit(e);
 		buttom++;
 	}
 
@@ -147,7 +147,7 @@ Status StackTraverse(SqStack S, Status(*visit)(SqStack &S, SElemType &))
 };
 
 // PASS
-Status visit(SqStack &S, SElemType &e)
+Status visit(SElemType &e)
 {
 	cout << e << endl;
 	return OK;
