@@ -93,6 +93,7 @@ Status Value(Array A, ElemType &e, ...)
 Status Assign(Array& A, ElemType e, ...)
 {
 	va_start(ap, e);
+        int off;
 	int result = Locate(A, ap, off);
 	if (result <= 0)
 		return result;
