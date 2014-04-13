@@ -20,7 +20,7 @@ void HuffmanCoding(HuffmanTree &HT, HuffmanCode &HC, int *w, int n)
 	if (n <= 1)
 		return;
 	int m = 2 * n - 1;
-	HT = (HuffmanTree)malloc((m + 1) *sizeof(HTNode)); // 第一个空着不用
+	HT = new HTNode[m + 1]; // 第一个空着不用
 	
 	// 初始化 1..n 赋上权值, n+1..m权值为0
 	for (int i = 1; i <= m; i++)
@@ -47,8 +47,8 @@ void HuffmanCoding(HuffmanTree &HT, HuffmanCode &HC, int *w, int n)
 	}
 
 	// 从叶子节点倒推出赫夫曼编码
-	HC = (HuffmanCode)malloc((n + 1)*sizeof(char*));
-	char *cd = (char*)malloc(n * sizeof(char));
+	HC = new char*[n + 1];
+	char *cd = new char[n];
 	cd[n - 1] = NULL;
 	for (int i = 1; i <= n; i++)
 	{
@@ -62,10 +62,10 @@ void HuffmanCoding(HuffmanTree &HT, HuffmanCode &HC, int *w, int n)
 		}
 
 		int lenHC = (n - 1) - start; // 起始的start 减去 最终的 start,即为该编码的长度
-		HC[i] = (char*)malloc((lenHC + 1)*sizeof(char)); // 最后一个位置放字符串结尾'\0'
+		HC[i] = new char[lenHC + 1]; // 最后一个位置放字符串结尾'\0'
 		strcpy(HC[i], &cd[start]);
 	}
-	free(cd);
+	delete cd;
 }
 
 // 在HT[1..i-1]选择parent为0且weight最小的两个结点，其序号分别为s1和s2
@@ -129,7 +129,7 @@ Status StringToHuffmanCode(char *data, char *String, HuffmanCode &HC, HuffmanCod
 	int LenData = strlen(data) - 1;
 	int LenStr = strlen(String) - 1;
 	int LenHC = 0;
-	HcStr = (HuffmanCode)malloc((LenStr + 1)*sizeof(char*)); // 存放字符串转换后的编码形式
+	HcStr = new char*[LenStr + 1]; // 存放字符串转换后的编码形式
 	for (int i = 1; i <= LenStr; i++)
 	{
 		for (int j = 1; j <= LenData; j++)
@@ -137,7 +137,7 @@ Status StringToHuffmanCode(char *data, char *String, HuffmanCode &HC, HuffmanCod
 			if (data[j] == String[i])
 			{
 				LenHC = strlen(HC[j]);
-				HcStr[i] = (char*)malloc((LenHC + 1)*sizeof(char));
+				HcStr[i] = new char[LenHC + 1];
 				strcpy(HcStr[i], HC[j]);
 			}
 		}
@@ -188,8 +188,7 @@ Status HuffmanCodeToString(char *HcStr, HuffmanTree &HT, HuffmanCode &HC, char *
 	int m = 2 * lenData - 1;
 	int p = m;
 	int start = 1;
-	char *cd = (char*)malloc(m * sizeof(char));
-	
+	char *cd = new char[m];
 	for (int i = 1; i <= lenHcStr + 1; i++)
 	{
 		if (HcStr[i] == '0') // 左
@@ -220,7 +219,7 @@ Status HuffmanCodeToString(char *HcStr, HuffmanTree &HT, HuffmanCode &HC, char *
 			else
 				cd[start++] = '1';
 		} 
-		else if (HcStr[i] == NULL) // 字符串结束
+		else if (HcStr[i] == NULL) // 字符串结尾
 		{
 			cd[start] = NULL;
 			String[++lenStr] = data[HuffmanCodeToChar(cd, HC, lenHC)];
@@ -229,7 +228,7 @@ Status HuffmanCodeToString(char *HcStr, HuffmanTree &HT, HuffmanCode &HC, char *
 
 	String[++lenStr] = NULL;
 
-	free(cd);
+	delete cd;
 	return OK;
 }
 
@@ -280,7 +279,7 @@ int main()
 	cout << endl;
 
 	/*输出字符串转换为编码后的样子*/
-	cout << "原串  : " << &String[1] << endl;
+	cout << "译码串: " << &String[1] << endl;
 	cout << "编码串: ";
 	OutputStrHuffmanCode(HcStr, lenHcStr);
 	cout << endl;
@@ -288,7 +287,9 @@ int main()
 	/*译码*/
 	while (true)
 	{
-		cout << "请输入编码，按下回车后会将其译码: ";
+		cout << endl;
+		cout << "--请根据上述编码输入编码串，按下回车后会将其译码--" << endl;
+		cout << "编码串: ";
 		lenStr = 0;
 		ch = getchar();
 		while (ch != '\n')
@@ -298,7 +299,7 @@ int main()
 		}
 		HcString[lenStr + 1] = NULL; // 字符串末尾值为0，表示字符串结束
 		HuffmanCodeToString(HcString, HT, HC, data, String);
-		cout << &String[1] << endl;
+		cout << "译码串: " << &String[1] << endl;
 	}
 	delete HT;
 	delete[] HC;
