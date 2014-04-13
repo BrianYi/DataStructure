@@ -185,13 +185,14 @@ Status HuffmanCodeToString(char *HcStr, HuffmanTree &HT, HuffmanCode &HC, char *
 	int lenData = strlen(data) - 1;
 	int lenHC = lenData;
 	int lenStr = 0;
-	char *cd = (char*)malloc(lenData * sizeof(char));
 	int m = 2 * lenData - 1;
 	int p = m;
 	int start = 1;
+	char *cd = (char*)malloc(m * sizeof(char));
+	
 	for (int i = 1; i <= lenHcStr + 1; i++)
 	{
-		if (HcStr[i] == '0')
+		if (HcStr[i] == '0') // 左
 		{
 			p = HT[p].lchild;
 			if (p == 0)
@@ -205,7 +206,7 @@ Status HuffmanCodeToString(char *HcStr, HuffmanTree &HT, HuffmanCode &HC, char *
 			else
 				cd[start++] = '0';
 		}
-		else if (HcStr[i] == '1')
+		else if (HcStr[i] == '1') // 右
 		{
 			p = HT[p].rchild;
 			if (p == 0)
@@ -219,7 +220,7 @@ Status HuffmanCodeToString(char *HcStr, HuffmanTree &HT, HuffmanCode &HC, char *
 			else
 				cd[start++] = '1';
 		} 
-		else if (HcStr[i] == NULL)
+		else if (HcStr[i] == NULL) // 字符串结束
 		{
 			cd[start] = NULL;
 			String[++lenStr] = data[HuffmanCodeToChar(cd, HC, lenHC)];
@@ -228,7 +229,7 @@ Status HuffmanCodeToString(char *HcStr, HuffmanTree &HT, HuffmanCode &HC, char *
 
 	String[++lenStr] = NULL;
 
-	//free(cd);
+	free(cd);
 	return OK;
 }
 
