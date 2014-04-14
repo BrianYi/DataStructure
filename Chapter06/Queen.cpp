@@ -57,12 +57,12 @@ void Trial(Chessboard &CB, int i, int n)
 		{
 			CP.row = i; // 棋子 行初始化
 			CP.col = j; // 棋子 列初始化
-			CB[End++] = CP; // 放入棋子，插入线性表最后一个
+			CB[End++] = CP; // 放入棋子(即->插入线性表最后一个)
 			if (IsPass(CB, CP, i-1)) // 检查[1..i-1]行的棋子与当前的第i行j列的棋子CP是否能够构成一个合法的棋盘
 			{
 				Trial(CB, i + 1, n);
 			}
-			End--; // 将最后一个元素删除
+			End--; // 移走刚刚放入的棋子(即->将最后一个元素删除)
 		}
 	}
 }
