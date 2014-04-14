@@ -74,7 +74,7 @@ int main()
 	while (true)
 	{
 		Count = 0;
-		cout << "N皇后?!!!(N>0)" << endl;
+		cout << "N皇后?!!!(N≥4)" << endl;
 		cout << "请输入N值: "; 
 		cin >> n;
 		Chessboard CB = new Chesspiece[n + 1]; // 第一个不用
