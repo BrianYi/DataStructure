@@ -121,13 +121,5 @@ Status CreateUDN_AML(AMLGraph &AML); // 构造无向网
 void DisplayAMLGraph(AMLGraph &AML, GraphKind kind);
 int LocateVex_AML(AMLGraph &AML, VertexType v); // 寻找v在图中的下标
 
-
-/*全局变量*/
-int			Vexnum, Arcnum, IncInfo; // 存储用户输入的顶点数，边数，弧是否含有相关信息
-VertexType	Vexs[MAX_VERTEX_NUM]; // 存储用户输入的顶点名字
-VertexType  V1[MAX_ARC_NUM], V2[MAX_ARC_NUM];// 存入用户输入的顶点
-int			W[MAX_ARC_NUM];// 存入用户输入的权值
-InfoType	*Info[MAX_ARC_NUM]; // 存入用户输入的弧信息
-
 /*公用函数*/
 void UserInput(GraphKind kind); // 用户输入信息
