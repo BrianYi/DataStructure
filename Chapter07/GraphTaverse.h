@@ -8,6 +8,3 @@ void DFSTraverse(ALGraph &AL); // 深度优先搜索
 void DFS(ALGraph &AL, int v); // 从第v个顶点出发递归地深度优先遍历图AL
 void BFSTraverse(ALGraph &AL); // 广度优先搜索
 void VisitFunc(ALGraph &AL, int v); // v为元素下标，显示下标为v的元素的数据
-
-/*全局变量*/
-bool Visited[MAX_VERTEX_NUM]; // 记录每个顶点是否被访问过
