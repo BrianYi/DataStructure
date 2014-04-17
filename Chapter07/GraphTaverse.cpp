@@ -2,6 +2,9 @@
 #include <iostream>
 using namespace std;
 
+/*全局变量*/
+bool Visited[MAX_VERTEX_NUM]; // 记录每个顶点是否被访问过
+
 // 找到第一个v相邻的顶点，返回它的下标
 int FirstAdjVex(ALGraph &AL, int v)
 {
