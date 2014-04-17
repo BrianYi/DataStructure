@@ -28,6 +28,12 @@ using namespace std;
  * 注意：因为时间紧迫，所以没有释放内存空间，出了事故不要找我。 - -！（不过一般情况下，没什么问题）
  */
 
+/*全局变量*/
+int			Vexnum, Arcnum, IncInfo; // 存储用户输入的顶点数，边数，弧是否含有相关信息
+VertexType	Vexs[MAX_VERTEX_NUM]; // 存储用户输入的顶点名字
+VertexType  V1[MAX_ARC_NUM], V2[MAX_ARC_NUM];// 存入用户输入的顶点
+int			W[MAX_ARC_NUM];// 存入用户输入的权值
+InfoType	*Info[MAX_ARC_NUM]; // 存入用户输入的弧信息
 
 /*数组表示法*/
 // 构造有向图
