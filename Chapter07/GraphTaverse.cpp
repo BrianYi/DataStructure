@@ -63,12 +63,12 @@ void BFSTraverse(ALGraph &AL)
 		{
 			Visited[v] = visited;
 			VisitFunc(AL, v); // 先显示完该结点，再入队
-			EnQueue(Q, v);
+			EnQueue(Q, v); /* 在遍历森林时出现语法错误，把此处注释掉 */
 			while (!QueueEmpty(Q))
 			{
 				QElemType u;
 				DeQueue(Q, u); // 出队后，将出队元素的所有相邻的未访问过的结点入队
-				for (int w = FirstAdjVex(AL, u); w >= 0; w = NextAdjVex(AL, u, w))
+				for (int w = FirstAdjVex(AL, u); w >= 0; w = NextAdjVex(AL, u, w)) /* 在遍历森林时出现语法错误，把此处注释掉 */
 				{
 					if (!Visited[w])
 					{
