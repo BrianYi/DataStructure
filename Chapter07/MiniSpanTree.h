@@ -2,9 +2,6 @@
 
 #include "Graph.h"
 
-#define MAX(x, y) x > y ? x:y;
-#define MIN(x, y) x < y ? x:y;
-
 /*用于Prim算法的部分数据结构,图用MGraph数据结构表示*/
 struct Closedge{
 	VertexType  adjvex;
