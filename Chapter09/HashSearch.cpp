@@ -139,7 +139,7 @@ int main()
 
 	delete[] ht;
 	for (int i = 0; i < m; i++)
-		delete ht2[i];
+		delete [] ht2[i];
 	delete[] ht2;
 	return 0;
 }
